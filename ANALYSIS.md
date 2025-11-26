@@ -208,6 +208,122 @@ Despite this clear instruction, SHA256 of these values does not decrypt the AES 
 4. **Community collaboration**: Check Bitcoin forums and puzzle communities for new insights
 5. **Blockchain analysis**: Study transaction patterns for possible clues
 
+## NEW FINDINGS FROM ONLINE RESEARCH (November 2025)
+
+### GitHub Issue #56 - Seven Token Password Theory
+
+A detailed analysis in [GitHub Issue #56](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/56) proposes a **seven-token password sequence** for the Cosmic Duality phase:
+
+1. `matrixsumlist`
+2. `enter`
+3. `lastwordsbeforearchichoice`
+4. `thispassword`
+5. `matrixsumlist` (repeated)
+6. `yourlastcommand`
+7. `secondanswer`
+
+**Decryption Process (Proposed):**
+- SHA-256 hash each token (32 bytes each)
+- XOR all hashes sequentially to produce a final 32-byte key
+- Use as EVP_BytesToKey input with salt for AES-256-CBC decryption
+- Result: 1327-byte binary containing Matrix-themed narrative
+
+### "Half and Better Half" Discovery
+
+The decrypted message states: *"IN CASE YOU MANAGE TO CRACK THIS THE PRIVATE KEYS BELONG TO HALF AND BETTER HALF AND THEY ALSO NEED FUNDS TO LIVE."*
+
+**Implication:** The final phase may require:
+- Finding two Bitcoin addresses hidden in the puzzle
+- Funding these addresses to "activate" the final solution
+- Current status: Both revealed addresses show 0 balance
+
+### Architect's Exact Last Words Before Neo's Choice
+
+From [The Architect Transcript](https://scottmanning.com/content/the-architect-transcript/):
+
+> "An emotion that is already blinding you from the simple, and obvious truth: **she is going to die, and there is nothing that you can do to stop it.**"
+
+This is the Architect's final statement before Neo walks to the left door. Possible password interpretations:
+- `sheisgoingtodieandthereisnothingthatyoucandotostopit`
+- `theproblemischoice`
+- Various condensed forms
+
+### Decentraland Clue (Coordinates -41, -17)
+
+The [GSMG.io Puzzle Piece on Decentraland](https://decentraland.org/places/place/?position=-41.-17) contains:
+- An audio file with steganographic content
+- **Solution method**: Split stereo track → invert one channel → mix back → mix to mono → create spectrogram
+- **Hidden message**: `HASHTHETEXT`
+- The NFT description mentions "White Rabbits everywhere"
+
+### GitHub Issue #15 - Solution Claims
+
+User Hilltopperjm claimed to have a solution (July 2023). Community observations:
+- SalPhaselon may be required to get the Cosmic Duality key
+- "dbbi/faedg" was discussed as a partially solved element
+- 127+ comments with various collaboration attempts
+- No explicit solution was publicly shared
+
+### Alternative Interpretations of "archi"
+
+The term "archi" in `lastwordsbeforearchichoice` may refer to:
+1. **Architect** (Matrix) - Most common interpretation
+2. **Archimedes** - Famous quote: "Give me a lever long enough and I shall move the world" or "Eureka!"
+3. **Archi** - Could be a name or abbreviation
+4. **Greek "archē"** - Meaning "first principle" or "origin"
+
+### New Password Candidates to Test
+
+Based on online research:
+```
+# Seven-token XOR method (from Issue #56)
+SHA256(matrixsumlist) XOR SHA256(enter) XOR SHA256(lastwordsbeforearchichoice) XOR SHA256(thispassword) XOR SHA256(matrixsumlist) XOR SHA256(yourlastcommand) XOR SHA256(secondanswer)
+
+# Architect's exact last words
+sheisgoingtodieandthereisnothingthatyoucandotostopit
+sheisgoingtodieandthereisnothingyoucandotostopit
+
+# HASHTHETEXT related
+HASHTHETEXT
+hashthetext
+SHA256(HASHTHETEXT)
+
+# Half and better half
+halfandbetterhalf
+halfbetterhalf
+```
+
+### Technical Notes
+
+The AES blob format observed:
+- Base64 encoded
+- Begins with `U2FsdGVk` (decoded: "Salted__")
+- 8-byte salt follows the "Salted__" prefix
+- Remainder is AES-256-CBC ciphertext
+- OpenSSL default key derivation: EVP_BytesToKey with MD5
+
+### Reddit/BitcoinTalk Discussions
+
+Active discussion threads:
+- r/bitcoinpuzzles: "gsmgio_5_btc_puzzle" and "gsmgio_5_btc_puzzle_challenge"
+- BitcoinTalk: topic=5532424 (2024-2025 discussions)
+- BitcoinTalk: topic=5151725 (original thread)
+
+### Puzzle Status Summary
+
+| Phase | Status | Key |
+|-------|--------|-----|
+| Phase 1 (Binary Matrix) | ✅ Solved | `gsmg.io/theseedisplanted` |
+| Phase 2 (The Warning) | ✅ Solved | `theflowerblossomsthroughwhatseemstobeaconcretesurface` |
+| Phase 3 (Causality) | ✅ Solved | `causality` |
+| Phase 3.1 (Seven Parts) | ✅ Solved | SHA256 of 7-part concatenation |
+| Phase 3.2 (Jacque Fresco) | ✅ Solved | `jacquefrescogiveitjustonesecondheisenbergsuncertaintyprinciple` |
+| Phase 3.2.1 (Beaufort) | ✅ Solved | `THEMATRIXHASYOU` |
+| Phase 3.2.2 (VIC Cipher) | ✅ Solved | `FUBCDORA.LETHINGKYMVPS.JQZXW` |
+| SalPhaselon (abba blocks) | ✅ Partially Solved | `matrixsumlist`, `enter`, etc. |
+| SalPhaselon (AES blob) | ❌ Unsolved | Unknown |
+| Cosmic Duality | ❌ Unsolved | Requires SalPhaselon key? |
+
 ## Sources
 - [puzzlehunt/gsmgio-5btc-puzzle GitHub](https://github.com/puzzlehunt/gsmgio-5btc-puzzle)
 - [Private Keys Directory](https://privatekeys.pw/puzzles/gsmg-puzzle)
@@ -216,3 +332,5 @@ Despite this clear instruction, SHA256 of these values does not decrypt the AES 
 - [GitHub Issue #29](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/29)
 - [GitHub Issue #56](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/56)
 - [Matrix Architect Transcript](https://scottmanning.com/content/the-architect-transcript/)
+- [Decentraland Puzzle Piece](https://decentraland.org/places/place/?position=-41.-17)
+- [GSMG.io Official Puzzle Page](https://gsmg.io/puzzle)
