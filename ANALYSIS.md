@@ -278,6 +278,7 @@ Based on online research:
 ```
 # Seven-token XOR method (from Issue #56)
 SHA256(matrixsumlist) XOR SHA256(enter) XOR SHA256(lastwordsbeforearchichoice) XOR SHA256(thispassword) XOR SHA256(matrixsumlist) XOR SHA256(yourlastcommand) XOR SHA256(secondanswer)
+Result: a795de117e472590e572dc193130c763e3fb555ee5db9d34494e156152e50735
 
 # Architect's exact last words
 sheisgoingtodieandthereisnothingthatyoucandotostopit
@@ -286,12 +287,33 @@ sheisgoingtodieandthereisnothingyoucandotostopit
 # HASHTHETEXT related
 HASHTHETEXT
 hashthetext
-SHA256(HASHTHETEXT)
+SHA256(HASHTHETEXT) = 5968dc5e02cbdf8181d135f143372e7062504cc06268e094ceae25b56c5a72ae
 
 # Half and better half
 halfandbetterhalf
 halfbetterhalf
 ```
+
+### Password Testing Results (November 2025)
+
+**Tested approaches that DID NOT work:**
+1. Seven-token XOR (matrixsumlist, enter, lastwordsbeforearchichoice, thispassword, matrixsumlist, yourlastcommand, secondanswer)
+2. Architect's exact last words (all variations)
+3. HASHTHETEXT and SHA256(HASHTHETEXT)
+4. Previous phase passwords (causality hash, 7-part hash, Jacque Fresco hash)
+5. Matrix sum values (422, row sums in various formats)
+6. First puzzle hints (theseedisplanted, its SHA256)
+7. Literal decoded elements as passwords
+8. Combined elements in various orders
+9. All major OpenSSL digest modes (md5, sha256, sha1)
+
+**Key SHA256 values computed:**
+- SHA256(matrixsumlist) = e7546e3076294907ed2a0ecaa9c33062f6e602b7c74c5aa5cc865df0ff345507
+- SHA256(enter) = e08d706b3e4ce964b632746cf568913cb93f1ed36476fbb0494b80ed17c5975c
+- SHA256(lastwordsbeforearchichoice) = 77094e7a1591fb81379f1582cf88db5aa6ab8e77176a4d8428a1ff5decfd102d
+- SHA256(thispassword) = 74c1d7592daf4f89b0a7ba5e368bb59cc9e19c6a4ebb7f33cd8ccf8f3edacac0
+- SHA256(HASHTHETEXT) = 5968dc5e02cbdf8181d135f143372e7062504cc06268e094ceae25b56c5a72ae
+- SHA256(theseedisplanted) = 6e3f5a7baf924d8546f5f7af94a43b8424e3c810983f9795eb8451ad4243d860
 
 ### Technical Notes
 
