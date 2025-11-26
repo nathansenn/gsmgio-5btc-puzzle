@@ -171,11 +171,112 @@ dbbibfbhccbegbihabebeihbeggegebebbgehhebhhfbabfdhbeffcdbbfcccgbfbeeggecbedcibfbf
 5. **Try alternative encryption libraries** that might have been used
 6. **Investigate the exact website content** (our fetches returned limited data)
 
+## Extended Testing (100+ Additional Creative Approaches)
+
+### Bitcoin History & Genesis Block
+Tested passwords related to:
+- Genesis block hash: `000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f`
+- "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
+- Satoshi Nakamoto variations
+- Cypherpunk references (Hal Finney, Nick Szabo, Wei Dai)
+- Bitcoin numbers (21000000, 2140, 10000 pizza)
+
+### Matrix Movie References
+Tested 60+ Matrix-related passwords:
+- All main characters (neo, trinity, morpheus, smith, oracle, architect, etc.)
+- Neo's real identity: thomasanderson, mr.anderson
+- Iconic quotes: followthewhiterabbit, thereisnoSpoon, iknowkungfu
+- Locations: zion, matrix, construct, nebuchadnezzar
+- Numbers: 101, 303, 314, 5550690
+
+### Non-Standard Encryption Methods
+- **Double SHA256** (Bitcoin-style): SHA256(SHA256(x))
+- **RIPEMD160**: Direct and combined with SHA256
+- **MD5 hashes**: All key candidates
+- **PBKDF2**: With iterations 1, 10, 100, 1000, 10000
+
+### XOR Key Derivation Combinations
+```
+XOR(matrixsumlist, enter) = 07d91e5b4865a0635b187aa65caba15e...
+XOR(theseedisplanted, matrixsumlist) = 896b344bd9bb0482abdff9653d670be6...
+XOR(matrixsumlist, thispassword) = 9395b9695b86068e5d8db4949f4885fe...
+XOR(matrixsumlist, enter, thispassword) = 7318c90265caefeaebbfc0f86a2014c2...
+```
+
+### Puzzle-Specific Phrases
+- cosmicduality, SalPhaselon, SalPhaseIon
+- Decentraland coordinates: -41-17, -41,-17, 4117
+- 23ciphers16encryptions7passwords
+- Executive Order 11110
+
+### VIC Cipher Output as Key
+- Full VIC output: "INCASEYOUMANAGETOCRACKTHISTHEPRIVATEKEYSBELONGTOHALFANDBETTERHALFANDTHEYALSONEEDFUNDSTOLIVE"
+- Extracted phrases: privatekeys, halfandbetterhalf, needfundstolive
+
+### Encoding Experiments
+- Hex encoding of all key phrases
+- Base64 encoding of all key phrases
+- ROT13 transformations
+- Atbash cipher transformations
+- A1Z26 (two-digit) encoding
+- Puzzle's own encoding (a-i=1-9, o=0)
+
+### Bitcoin Address Manipulations
+- Full address: 1GSMG1JC9wtdSwfwApgj2xcmJPAwx7prBe
+- Segments: 1GSMG, prBe, JC9, wtdSwfw
+- Combined with decoded elements
+
+### Mathematical Approaches
+- Matrix row sums: 57, 75, 74, 57, 63, 71, 25 = 422
+- Binary representation: 100110001001
+- Fibonacci, golden ratio, pi, euler
+- ASCII value sums and combinations
+
+### Wild Guesses (Single Words)
+Tested 40+ common puzzle words:
+- password, secret, hidden, treasure
+- bitcoin, crypto, freedom, wealth
+- truth, reality, illusion, simulation
+- alpha, omega, first, last, begin, end
+
+### Formatting Variations
+- Quoted: "matrixsumlist", 'matrixsumlist'
+- Bracketed: [matrixsumlist], (matrixsumlist), {matrixsumlist}
+- Prefixed: sha256:matrixsumlist, sha256(matrixsumlist)
+
+### Chess FEN Notation
+- Initial position: B5KR/1r5B/6R1/2b1p1p1/2P1k1P1/1p2P2p/1P2P2P/3N1N2 w - - 0 1
+- After buddhist move: B5KR/1r5B/2R5/2b1p1p1/2P1k1P1/1p2P2p/1P2P2P/3N1N2 b - - 0 1
+
+### Total Passwords Tested: 1000+
+
 ## Conclusion
 
-After testing 500+ password combinations across multiple encoding methods and OpenSSL configurations, the AES blobs remain undecrypted. The password derivation method is either:
-1. Not what the hints suggest
-2. Dependent on undiscovered information
-3. Using non-standard cryptographic parameters
+After testing **1000+ password combinations** across multiple:
+- Encoding methods (SHA256, MD5, RIPEMD160, double hashing)
+- OpenSSL configurations (-md md5, sha1, sha256, pbkdf2)
+- Password formats (raw, hashed, combined, formatted)
+- Creative interpretations (Bitcoin, Matrix, puzzle-specific)
 
-The critical clue may lie in the colored letters of the SalPhaselon grid or additional hints at Decentraland coordinates.
+The AES blobs remain undecrypted. This strongly suggests:
+
+1. **The password requires information we don't have access to**
+   - Possibly from Decentraland coordinates (-41, -17)
+   - Or from colored letter patterns not yet extracted
+
+2. **Non-standard encryption parameters**
+   - Custom key derivation
+   - Different padding or IV
+
+3. **Missing puzzle step**
+   - The undecoded 91 characters before "matrixsumlist" may need to be solved first
+   - This could provide the actual password
+
+4. **The hint may be deliberately misleading**
+   - "sha256 our first hint is your last command" may have a different meaning
+
+### What Would Help
+- Physical visit to Decentraland to check for updated clues
+- Systematic extraction of colored letters from SalPhaselon grid (requires image processing)
+- Community collaboration to identify patterns in the undecoded sections
+- Contact with puzzle creator for hints (if possible)
