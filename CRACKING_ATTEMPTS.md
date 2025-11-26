@@ -280,3 +280,115 @@ The AES blobs remain undecrypted. This strongly suggests:
 - Systematic extraction of colored letters from SalPhaselon grid (requires image processing)
 - Community collaboration to identify patterns in the undecoded sections
 - Contact with puzzle creator for hints (if possible)
+
+---
+
+## Additional Testing Session (3000+ more passwords)
+
+### Matrix Architect Dialogue (150+ passwords)
+Tested exact dialogue from the Architect scene in Matrix Reloaded:
+- "hopeitisnottoolate", "thedoorontheleft", "thedoorontheright"
+- "choiceisanillusion", "theproblemischoice"
+- "alreadyknowwhatyouaregoingtoodo", "alreadyunderstandwhy"
+- "sheisgoingtodieandthereisnothingyoucandotostopit"
+- "hopehopehopehopeistheessentialhumandillusion"
+- "cataclysmiccascade", "systemicfailure", "extinctionoftheentirehumanrace"
+- "concordantly", "apropos", "ipsofacto", "ergo", "visamavis"
+- "youhavealreadymadeyourchoice", "youareheretounderstanwhy"
+
+### "Last Command" Terminal Interpretations (130+ passwords)
+- Unix commands: exit, quit, logout, shutdown, halt, reboot, stop, end
+- Control signals: ctrl-c, ctrl-d, sigterm, sigkill, eof
+- Common commands: ls, cd, pwd, cat, echo, grep, find, mkdir
+- Crypto commands: openssl, gpg, sha256sum, md5sum, bitcoin-cli
+
+### Neo's Choice Scene (100+ passwords)
+- Choices: trinity, love, savethem, savetrinity, savezion
+- Concepts: theanomaly, theone, theleft, theright, leftdoor, rightdoor
+- Actions: sourcecode, reload, reloadthematrix, restart, reboot
+
+### Cosmic/Astronomical Themes (300+ passwords)
+- Eastern: yinyang, taijitu, tao, dao, wuji, karma, nirvana, samsara
+- Duality: lightanddark, sunmoon, matterantimatter, positiveandnegative
+- Quantum: waveparticle, uncertainty, schrodingerscat, aliveanddead
+- Cosmic: blackhole, whitehole, alpha, omega, beginning, end
+- Half/BetterHalf: halfandbetterhalf, spouse, soulmate, twobecomeone
+
+### VIC Cipher Output Phrases (50+ passwords)
+- Full output: "INCASEYOUMANAGETOCRACKTHISTHEPRIVATEKEYSBELONGTOHALFANDBETTERHALFANDTHEYALSONEEDFUNDSTOLIVE"
+- Segments: privatekeysbelongtohalfandbetterhalf, needfundstolive, managetocrackthis
+
+### Multi-Hash Combinations (100+ passwords)
+- Double SHA256: SHA256(SHA256(x))
+- Triple SHA256: SHA256(SHA256(SHA256(x)))
+- SHA256 of MD5: SHA256(MD5(x))
+- Tested on all key elements
+
+### PBKDF2 Testing (150+ passwords)
+Iterations tested: 1, 10, 100, 1000, 10000, 100000
+Both readme_blob and cosmic_blob tested
+
+### AES Variant Testing (50+ passwords)
+- AES-128-CBC, AES-192-CBC
+- AES-256-CFB, AES-256-OFB, AES-256-CTR
+- With -nosalt option
+
+### Puzzle Number Sequences (120+ passwords)
+- Matrix row sums: 57, 75, 74, 57, 63, 71, 25, 422
+- Coordinates: 4117, -41-17, 41, 17
+- Cipher counts: 23, 16, 7
+- Bitcoin: 5, btc, 5btc, 256
+
+### BIP39 Mnemonic Words (480+ passwords)
+Tested 120+ BIP39 words relevant to puzzles:
+- password, secret, hidden, treasure, key, lock, unlock
+- seed, split, half, balance, transfer, verify
+- choice, command, first, last, begin, end
+
+### XOR Combinations (70+ passwords)
+- All pairwise XOR of SHA256 hashes
+- All triple XOR combinations
+- XOR of all four decoded elements
+- XOR of all six key elements
+
+### HMAC-SHA256 Combinations (50+ passwords)
+HMAC(key, message) for all key/message pairs of decoded elements
+
+### Quote/Culture References (250+ passwords)
+- Matrix quotes: thereisnoSpoon, freeyourmind, iknowkungfu
+- Bitcoin culture: hodl, toThemoon, donttrustverify, notYourkeysnotyourbitcoin
+- Hacker culture: allYourbasearebelongtous, hacktheplanet, cypherpunkswritecode
+- Philosophy: cogitoegosum, knowThyself, asabovesobelow, solveetcoagula
+
+### Case/Format Variations (200+ passwords)
+- UPPERCASE, lowercase, Title Case, aLtErNaTiNg CaSe
+- Separators: space, underscore, hyphen, dot, colon, pipe, plus, slash
+
+### Total Additional Passwords Tested: 3000+
+
+### Updated Total: 4000+ passwords tested
+
+## Key Observations from Extended Testing
+
+1. **OpenSSL consistently returns "bad decrypt"** - This confirms we haven't found the correct password
+2. **Both readme_blob and cosmic_blob tested** - Different blobs, both remain encrypted
+3. **No partial matches** - Even with binary analysis, no promising patterns emerged
+4. **All digest modes tested** - md5, sha1, sha256 all produce garbage
+
+## Remaining Hypotheses
+
+1. **The password may be computed, not guessed**
+   - Could involve a mathematical operation on decoded elements
+   - May require solving the 91 undecoded characters first
+
+2. **Non-OpenSSL encryption**
+   - Could use a different library with different parameters
+   - May have custom IV or salt handling
+
+3. **External information required**
+   - Decentraland location may have been updated with new clues
+   - Colored letter pattern in image needs computer vision analysis
+
+4. **Sequential dependency**
+   - May need to solve a different puzzle step first
+   - The password could be output from another encryption layer
