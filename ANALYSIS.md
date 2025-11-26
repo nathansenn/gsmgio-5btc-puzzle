@@ -346,13 +346,144 @@ Active discussion threads:
 | SalPhaselon (AES blob) | ❌ Unsolved | Unknown |
 | Cosmic Duality | ❌ Unsolved | Requires SalPhaselon key? |
 
+## EXTENSIVE PASSWORD TESTING SESSION (November 26, 2025)
+
+### Summary
+Over **1500+ unique passwords** were tested using multiple approaches. None produced readable output from the SalPhaselon AES blob.
+
+### Testing Approaches Used
+
+#### 1. Standard OpenSSL Decryption
+Tested with multiple digest modes:
+- Default (MD5)
+- `-md sha256`
+- `-md sha1`
+- `-md sha512`
+
+#### 2. Python Crypto Library
+- EVP_BytesToKey key derivation
+- PBKDF2 with various iteration counts (1, 10, 100, 1000, 10000)
+- Direct key/IV decryption
+
+#### 3. Seven-Token XOR Method
+From GitHub Issue #56:
+```
+Seven tokens: matrixsumlist, enter, lastwordsbeforearchichoice, thispassword, matrixsumlist, yourlastcommand, secondanswer
+XOR result: a795de117e472590e572dc193130c763e3fb555ee5db9d34494e156152e50735
+```
+This XOR key was tested as both a password and direct AES key - no success.
+
+#### 4. Matrix Quotes Tested
+Every significant line from The Matrix trilogy was tested, including:
+- Architect's exact last words: "she is going to die and there is nothing that you can do to stop it"
+- "the problem is choice"
+- "hope it is the quintessential human delusion"
+- "denial is the most predictable of all human responses"
+- All Neo, Morpheus, Oracle, and Merovingian quotes
+- Various concatenations and SHA256 hashes of all quotes
+
+#### 5. Cipher Analysis
+- Beaufort cipher with THEMATRIXHASYOU on blob - produced non-ASCII
+- Vigenere cipher variants tested
+- Affine cipher (P = 2(C-8) mod 9) on letter grid
+
+#### 6. Letter Grid Analysis
+- Grid uses letters a-i (representing 1-9)
+- Row length 14 gives sums: [57, 75, 74, 57, 63, 71, 58]
+- First 6 match known sums exactly (last differs: 58 vs 25)
+- Total sum: 3239 (with full extracted grid)
+- Various sum formats tested as passwords
+
+#### 7. Direct Key/IV Testing
+From GitHub Issue #55, claimed Cosmic Duality decryption:
+```
+Key: 6ac438facf366702b60d6dfcebd39815b582f19b591b3fdf69240c6966f4fc23
+IV: c6ff2e39d98843bc3c26b8a33a15b5c9
+```
+Tested on SalPhaselon blob - produced high-entropy (random) output, not readable text.
+
+### Password Categories Tested
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| Matrix quotes | 200+ | All dialogue, spaceless, SHA256 |
+| Decoded elements | 100+ | matrixsumlist, enter, etc. |
+| Archimedes | 30+ | noliturbarecirculosmeos, eureka |
+| Numeric | 50+ | 422, row sums, binary |
+| Previous phases | 20+ | All known passwords/hashes |
+| Bitcoin/crypto | 30+ | satoshi, genesis, address |
+| XOR combinations | 50+ | Various hash XORs |
+| First hint variations | 40+ | theseedisplanted + variations |
+| Permutations | 500+ | All element orderings |
+
+### Key Technical Findings
+
+#### SalPhaselon Blob Details
+```
+Salt (hex): 3ab585348552415d
+Ciphertext length: 80 bytes
+Format: Salted__ + 8-byte salt + AES-256-CBC ciphertext
+```
+
+#### Decoding Verification
+The README decoding method works:
+- `cfobfdhgdobdgooiigdocdaoofidh` → digits → base16 → hex → "thispassword" ✓
+
+The first encoded string doesn't decode cleanly using the same method:
+- `agdafaoaheiecggchgicbbhcgbehcfcoabicfdhhcdbbcagbdaiobgbeadedde` → garbage output
+
+### GitHub Issues Analyzed
+
+| Issue | Content | Useful? |
+|-------|---------|---------|
+| #55 | Claims Cosmic Duality decryption with key/IV | Key produced random output |
+| #56 | Seven-token XOR theory | Tested extensively - failed |
+| #64 | "NEW DOOR" - metaphorical hints | No concrete password |
+| #65 | "SUMREMAINDERUNBALANCEDEQUATION" | Tested - failed |
+| #66 | Phase 5 solution claim | Dismissed as nonsense |
+
+### Possible Explanations for Failure
+
+1. **Output is Binary**: The decrypted content may not be ASCII text but another encrypted blob or image
+2. **Wrong Blob**: The SalPhaselon blob may not be the correct target; Cosmic Duality may come first
+3. **Missing Element**: A clue from Decentraland or elsewhere may be required
+4. **Multi-Step Process**: May need to decrypt SalPhaselon to get Cosmic Duality password, or vice versa
+5. **Non-Standard Derivation**: The password derivation may use a custom method not tested
+
+### Remaining Avenues to Explore
+
+1. **Visit Decentraland (-41, -17)**: Get the actual audio file and analyze it
+2. **Steganography on images**: puzzle.png, phase3.png may contain hidden data
+3. **Blockchain transaction analysis**: Study the 35 transactions for hidden messages
+4. **Alternative cipher modes**: CTR, GCM, or other AES modes
+5. **Character encoding issues**: Try UTF-16, Latin-1, or other encodings for password
+6. **Community insights**: Monitor Reddit r/bitcoinpuzzles and BitcoinTalk for new theories
+
+### Test Scripts Created
+
+All test scripts are available in the repository:
+- `test_passwords.sh` - Bash script testing 500+ passwords
+- `smart_test.py` - Python script with readability validation
+- `comprehensive_test.py` - Based on clue analysis
+- `advanced_decrypt.py` - PBKDF2 and direct key/IV testing
+- `analyze_grid.py` - Letter grid sum analysis
+- `beaufort_test.py` - Cipher testing
+- `massive_test.py` - 764 unique passwords
+- `final_test.py` - Permutations and combinations
+- `test_cosmic.py` - Cosmic Duality blob testing
+
 ## Sources
 - [puzzlehunt/gsmgio-5btc-puzzle GitHub](https://github.com/puzzlehunt/gsmgio-5btc-puzzle)
 - [Private Keys Directory](https://privatekeys.pw/puzzles/gsmg-puzzle)
 - [GitHub Issue #6](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/6)
 - [GitHub Issue #15](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/15)
 - [GitHub Issue #29](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/29)
+- [GitHub Issue #55](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/55)
 - [GitHub Issue #56](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/56)
+- [GitHub Issue #64](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/64)
+- [GitHub Issue #65](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/65)
 - [Matrix Architect Transcript](https://scottmanning.com/content/the-architect-transcript/)
+- [Archimedes Last Words](https://en.wikiquote.org/wiki/Archimedes)
 - [Decentraland Puzzle Piece](https://decentraland.org/places/place/?position=-41.-17)
 - [GSMG.io Official Puzzle Page](https://gsmg.io/puzzle)
+- [Screen Rant: Architect Speech Explained](https://screenrant.com/matrix-reloaded-architect-speech-choice-explained/)
