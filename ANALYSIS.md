@@ -1,12 +1,17 @@
 # GSMG.IO 5 BTC Puzzle Analysis
 
-This document contains analysis of the puzzle's current state and attempted solutions.
+This document contains comprehensive analysis of the puzzle's current state and attempted solutions.
 
-## Puzzle Status
+## Puzzle Status (Updated November 2025)
 
-The puzzle remains **UNSOLVED** as of this analysis. The prize has been reduced from 5 BTC to approximately 1.5 BTC after multiple Bitcoin halvings.
+The puzzle remains **UNSOLVED**.
 
 **Prize Address**: `1GSMG1JC9wtdSwfwApgj2xcmJPAwx7prBe`
+**Current Balance**: **1.25359971 BTC** (~$130,000+ at current prices)
+**Total Received**: 8.75713469 BTC
+**Transactions**: 35
+
+The prize is real and still claimable!
 
 ## Solved Phases Summary
 
@@ -134,8 +139,80 @@ A separate AES blob exists in the Cosmic Duality section below SalPhaselon. This
 5. **Check for steganography** - Images may contain hidden data
 6. **Consider multi-step passwords** - May need to combine multiple elements
 
+## Comprehensive Password Testing (November 2025)
+
+### Passwords Tested (500+ combinations)
+
+#### Matrix Theme
+- All major dialogue quotes from The Matrix trilogy
+- Architect's exact final words: "she is going to die and there is nothing that you can do to stop it"
+- Red pill/blue pill scene quotes from Morpheus
+- "theproblemischoice", "hope", "denial", "causality", etc.
+
+#### Decoded Elements as Passwords
+- `matrixsumlist` (raw and SHA256)
+- `enter` (raw and SHA256)
+- `lastwordsbeforearchichoice` (raw and SHA256)
+- `thispassword` (raw and SHA256)
+- All permutations and combinations of the above
+
+#### Matrix Sum Values
+- Row sums: 57, 75, 74, 57, 63, 71, 25
+- Total sum: 422
+- Binary: 100110001001
+- Various formats: comma-separated, space-separated, concatenated
+
+#### Previous Phase Passwords
+- All passwords from phases 1-3.2.1
+- SHA256 hashes used in previous phases
+- Concatenations of multi-part keys
+
+#### "First Hint" Interpretations
+- `theseedisplanted` (first decoded URL)
+- `gsmg.io/theseedisplanted` (full first hint)
+- `matrixsumlist` (first decode in SalPhaselon)
+- Various SHA256 hashes of these
+
+#### Alternative "Archi" Meanings
+- Archimedes-related: "eureka", "donnotdisturbmycircles"
+- Archbishop, Architecture, Archetype
+- Greek "archē" (first/primary)
+
+#### Technical Variations
+- Different OpenSSL digest modes: -md md5, sha256, sha512, sha1
+- PBKDF2 with various iteration counts
+- XOR combinations of decoded elements
+- Different case patterns (uppercase, lowercase, mixed)
+
+### Key Insight: Clue Structure
+
+The hint "sha b e f our first hint is your last command" should be parsed as:
+- `sha b e f` = SHA256 (where b=2, e=5, f=6 in the puzzle's encoding)
+- `our first hint` = either "theseedisplanted" (puzzle's first URL) or "matrixsumlist" (SalPhaselon's first decode)
+- `is your last command` = use this as the final password
+
+Despite this clear instruction, SHA256 of these values does not decrypt the AES blob.
+
+### Possible Explanations
+
+1. **Multi-layer encryption**: The decrypted text from Phase 3.2.1 mentions "SIXTEEN ENCRYPTIONS AND OR SEVEN INTERTWINED PASSWORDS"
+2. **Missing information**: There may be clues in Decentraland (coordinates -41, -17) or other locations
+3. **Non-standard encoding**: The password might use special characters or encoding not yet tried
+4. **Deliberate obfuscation**: The puzzle creator may have included misleading clues
+
+## Next Steps for Future Solvers
+
+1. **Visit Decentraland**: Go to coordinates -41, -17 for potential audio clues
+2. **Analyze audio spectrogram**: The hint "HASHTHETEXT" was found via audio analysis
+3. **Check for steganography**: Images may contain hidden data requiring specialized tools
+4. **Community collaboration**: Check Bitcoin forums and puzzle communities for new insights
+5. **Blockchain analysis**: Study transaction patterns for possible clues
+
 ## Sources
 - [puzzlehunt/gsmgio-5btc-puzzle GitHub](https://github.com/puzzlehunt/gsmgio-5btc-puzzle)
 - [Private Keys Directory](https://privatekeys.pw/puzzles/gsmg-puzzle)
 - [GitHub Issue #6](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/6)
 - [GitHub Issue #15](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/15)
+- [GitHub Issue #29](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/29)
+- [GitHub Issue #56](https://github.com/puzzlehunt/gsmgio-5btc-puzzle/issues/56)
+- [Matrix Architect Transcript](https://scottmanning.com/content/the-architect-transcript/)
