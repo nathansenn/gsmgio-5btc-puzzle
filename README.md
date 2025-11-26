@@ -390,7 +390,86 @@ Through some trial and error, we find that these need to be shifted to base 16, 
 1. [lastwordsbeforearchichoice](https://gchq.github.io/CyberChef/#recipe=Remove_whitespace(true,true,true,true,true,false)Substitute('abcdefghio','1234567890')To_Base(16)From_Hex('Auto')&input=YSBnIGQgYSBmIGEgbyBhIGggZSBpIGUgYyBnIGcgYyBoIGcgaSBjIGIgYiBoIGMgZyBiIGUgaCBjIGYgYyBvIGEgYiBpIGMgZiBkIGggaCBjIGQgYiBiIGMgYSBnIGIgZCBhIGkgbyBiIGIgZyBiIGUgYSBkIGUgZCBkIGU)
 2. [thispassword](https://gchq.github.io/CyberChef/#recipe=Remove_whitespace(true,true,true,true,true,false)Substitute('abcdefghio','1234567890')To_Base(16)From_Hex('Auto')&input=IGMgZiBvIGIgZiBkIGggZyBkIG8gYiBkIGcgbyBvIGkgaSBnIGQgbyBjIGQgYSBvIG8gZiBpIGQgaA)
 
+### Third z-section (Plain English with encoded prefix)
+The third z-section contains:
+> s h a b e f o u r f i r s t h i n t i s y o u r l a s t c o m m a n d
+
+Where "shabef" decodes using a=1...z=26 mapping: s(19)h(8)a(1)b(2)e(5)f(6) = "sha256"
+
+This gives us the instruction: **"sha256 our first hint is your last command"**
+
+This suggests we should SHA256 our first decoded hint ("matrixsumlist") and use it as the final password.
+
+### Cosmic Duality Hint
+Below the AES blob, there's another hint:
+> s h a b e f a n s t o o
+
+This decodes to: **"sha256 ans too"** (sha256 the answer too)
+
 ### AES Blob
-The following follows the same formatting as previous openssl base64-encoded AES blobs that we encounted in previous stages
+The following follows the same formatting as previous openssl base64-encoded AES blobs that we encounted in previous stages.
+
+Note: The "enter" binary pattern is embedded INSIDE the blob, which is unusual:
+- Part 1: `U2FsdGVkX186tYU0hVJBXXUnBUO7C0+X4KUWnWkCvoZSxbRD3wNsGWVHefvdrd9z`
+- Enter pattern (binary → "enter"): `abbaabaabbabbbaabbbabaaaabaabababbbaababa`
+- Part 2: `QvX0t8v3jPB4okpspxebRi6sE1BMl5HI8Rku+KejUqTvdWOX6nQjSpepXwGuN/jJ`
+
+Full blob (without enter pattern):
 > U 2 F s d G V k X 1 8 6 t Y U 0 h V J B X X U n B U O 7 C 0 + X 4 K U W n W k C v o Z S x b R D 3 w N s G W V H e f v d r d 9 z
 > Q v X 0 t 8 v 3 j P B 4 o k p s p x e b R i 6 s E 1 B M l 5 H I 8 R k u + K e j U q T v d W O X 6 n Q j S p e p X w G u N / j J
+
+## What's Still Missing (Unsolved)
+
+### 1. Correct Password for AES Blob
+The instruction "sha256 our first hint is your last command" suggests using:
+```
+SHA256(matrixsumlist) = e7546e3076294907ed2a0ecaa9c33062f6e602b7c74c5aa5cc865df0ff345507
+```
+
+However, this does NOT successfully decrypt the AES blob to readable text. Possible reasons:
+- "our first hint" might refer to something else (e.g., "theseedisplanted" from Phase 1, or "causality")
+- The password might need additional transformations
+- Multiple layers of encryption might be required
+
+### 2. Undecoded Grid Sections
+The SalPhaselon grid has sections that don't decode to readable text:
+
+**Before the "matrixsumlist" binary (91 characters):**
+```
+dbbibfbhccbegbihabebeihbeggegebebbgehhebhhfbabfdhbeffcdbbfcccgbfbeeggecbedcibfbffgigbeeeabe
+```
+When converted using a-i,o→digits→base16→ASCII, produces garbage. This section might:
+- Use a different cipher
+- Require a key/password
+- Be encrypted data
+
+**After the "matrixsumlist" binary (570 characters):**
+Similarly does not decode to readable text with the known methods.
+
+### 3. Interpretation of Decoded Hints
+- **"matrixsumlist"** - Might be:
+  - Literal instruction: "matrix + sum + list" (sum matrix elements)
+  - Reference to The Matrix movie
+  - A password component
+
+- **"lastwordsbeforearchichoice"** - Refers to The Matrix Reloaded Architect scene
+  - Might need to be replaced with the actual quote
+  - Possible quotes: "the problem is choice", "hope", "trinity"
+
+### 4. Key SHA256 Hashes (for reference)
+```
+SHA256(matrixsumlist) = e7546e3076294907ed2a0ecaa9c33062f6e602b7c74c5aa5cc865df0ff345507
+SHA256(enter) = e08d706b3e4ce964b632746cf568913cb93f1ed36476fbb0494b80ed17c5975c
+SHA256(matrixsumlistenter) = 9e191ca45828034621d4a035572afecb024300bb73c91af0350973170e56f020
+SHA256(lastwordsbeforearchichoice) = 77094e7a1591fb81379f1582cf88db5aa6ab8e77176a4d8428a1ff5decfd102d
+SHA256(thispassword) = 74c1d7592daf4f89b0a7ba5e368bb59cc9e19c6a4ebb7f33cd8ccf8f3edacac0
+SHA256(theseedisplanted) = 6e3f5a7baf924d8546f5f7af94a43b8424e3c810983f9795eb8451ad4243d860
+SHA256(causality) = eb3efb5151e6255994711fe8f2264427ceeebf88109e1d7fad5b0a8b6d07e5bf
+```
+
+### 5. Theories to Test
+1. The password might be a combination: `matrixsumlist + enter + [Matrix quote] + thispassword`
+2. The undecoded grid sections might contain the actual password
+3. "lastwordsbeforearchichoice" might need to be replaced with actual Matrix dialogue
+4. Multiple AES layers (as mentioned in Phase 3.2) might be required
+5. The "enter" pattern inside the blob might be significant - perhaps needs to be kept or used as part of the key
